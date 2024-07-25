@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Sentiment Analysis App</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <style>
+       body {
+           text-align: center;
+           margin-top: 20px;
+           background-color: #f8f9fa;
+           font-family: Arial, sans-serif;
+       }
+       #logo {
+           margin-bottom: 20px;
+       }
+       .title {
+           font-size: 32px;
+           color: #333;
+           margin-bottom: 10px;
+       }
+       #description {
+           margin-bottom: 20px;
+       }
+       #buttons {
+           margin-top: 20px;
+       }
+       .button {
+           background-color: #04AA6D; 
+           border: none;
+           color: white;
+           padding: 15px 30px;
+           text-align: center;
+           text-decoration: none;
+           display: inline-block;
+           font-size: 16px;
+           margin: 10px;
+           cursor: pointer;
+           border-radius: 12px;
+           transition: background-color 0.3s;
+       }
+       .button:hover {
+           background-color: #00755e;
+       }
+       .head{
+           font-family:sans-serif; 
+           font-size:28px; 
+           color:red;
+           margin-bottom: 10px;
+       }
+       .chart-container {
+           width: 400px;
+           margin: 0 auto;
+           border: 1px solid #ccc;
+           background-color: #fff;
+           box-shadow: 0 0 10px rgba(0,0,0,0.1);
+           padding: 20px;
+       }
+       .bar {
+           margin-bottom: 20px;
+           display: flex;
+           align-items: center;
+           justify-content: space-between;
+       }
+       .bar-label {
+           font-size: 18px;
+           color: #333;
+       }
+       .bar-graph {
+           width: 70%;
+           height: 20px;
+           background-color: #eee;
+           border-radius: 5px;
+           overflow: hidden;
+       }
+       .bar-column {
+           height: 100%;
+           background-color: #04AA6D;
+           transition: width 0.3s ease;
+       }
+    </style>
+</head>
+<body>
+   <div id="logo">
+       <img src="/static/bp.png" alt="amazon" width="300px" height="150px"/>
+   </div>
+   <div id="description">
+       <h1 class="title">Welcome to Sentiment Analysis Website</h1>
+       <p>This website is a tool that helps you analyze the sentiment of reviews. Upload a CSV file to analyze sentiments in bulk or input a single review to determine its sentiment.</p>
+   </div>
+    
+<div class="w3-row-padding">
+    <div class="w3-half" id="summary">
+        <h2 class="head">Summary of Reviews</h2>
+        <div id="scrollable" style="height: 500px; overflow-y: scroll;">
+            {{ table | safe }}
+        </div>
+    </div>
+
+  <div class="w3-half">
+    <h2 class="head">Sentiment Analysis</h2>
+        <div class="chart-container">
+            <div class="bar">
+                <div class="bar-label">Positive</div>
+                <div class="bar-graph">
+                    <div class="bar-column" style="width: {{ positive }}%;"></div>
+                </div>
+            </div>
+            <div class="bar">
+                <div class="bar-label">Neutral</div>
+                <div class="bar-graph">
+                    <div class="bar-column" style="width: {{ neutral }}%;"></div>
+                </div>
+            </div>
+            <div class="bar">
+                <div class="bar-label">Negative</div>
+                <div class="bar-graph">
+                    <div class="bar-column" style="width: {{ negative }}%;"></div>
+                </div>
+            </div>
+        </div>
+  </div>
+</div> 
+    
+    <form action="/" method="get">
+        <input class="button" type="submit" value="Back to Home">
+    </form>
+</body>
+</html>
